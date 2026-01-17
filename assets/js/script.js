@@ -194,9 +194,17 @@ document.addEventListener("DOMContentLoaded", () => {
     navigator.clipboard.writeText(info).then(() => alert("✅ Copiado."));
   });
 
+  document.getElementById("btnAgendar")?.addEventListener("click", () => {
+    const titulo = encodeURIComponent("Sorteo Rifa Solidaria 🦵");
+    // Fecha: 2 de Marzo de 2026
+    const urlCalendar = `https://www.google.com/calendar/render?action=TEMPLATE&text=${titulo}&dates=20260302T210000Z/20260302T220000Z&details=¡Hoy+es+el+gran+sorteo!`;
+    window.open(urlCalendar, '_blank');
+  });
+
   /* =====================================================
       INICIO: LLAMAR A LA MEMORIA
   ===================================================== */
   sincronizarNumerosOcupados();
+
 
 });
