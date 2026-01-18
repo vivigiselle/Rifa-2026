@@ -48,23 +48,32 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =====================================================
       FUNCIÓN PARA BLOQUEAR NÚMEROS YA VENDIDOS
   ===================================================== */
-  onSnapshot(numerosRef, (snapshot) => {
-    const ocupados = snapshot.docs
-      .filter(d => d.data().ocupado === true)
-      .map(d => d.id);
+onSnapshot(numerosRef, (snapshot) => {
+  const ocupados = snapshot.docs
+    .filter(d => d.data().ocupado === true)
+    .map(d => d.id);
 
-    document.querySelectorAll(".numero").forEach(div => {
-      if (ocupados.includes(div.textContent)) {
-        div.classList.add("bloqueado");
-        div.style.pointerEvents = "none";
-        div.style.backgroundColor = "#d1d5db";
-        div.style.color = "#9ca3af";
-      }
-    });
-
-    totalDisponibles = 400 - ocupados.length;
-    if (contadorDisponibles) contadorDisponibles.textContent = totalDisponibles;
+  // 🔹 LIMPIAR ESTADO VISUAL
+  document.querySelectorAll(".numero").forEach(div => {
+    div.classList.remove("bloqueado");
+    div.style.pointerEvents = "";
+    div.style.backgroundColor = "";
+    div.style.color = "";
   });
+
+  // 🔹 BLOQUEAR SOLO OCUPADOS
+  document.querySelectorAll(".numero").forEach(div => {
+    if (ocupados.includes(div.textContent)) {
+      div.classList.add("bloqueado");
+      div.style.pointerEvents = "none";
+      div.style.backgroundColor = "#d1d5db";
+      div.style.color = "#9ca3af";
+    }
+  });
+
+  totalDisponibles = 400 - ocupados.length;
+  if (contadorDisponibles) contadorDisponibles.textContent = totalDisponibles;
+});
 
   // Rifa de 400 números
   for (let i = 1; i <= 400; i++) {
@@ -184,3 +193,4 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
