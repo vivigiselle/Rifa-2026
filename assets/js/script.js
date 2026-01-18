@@ -4,7 +4,6 @@ import {
   getFirestore,
   doc,
   setDoc,
-  getDocs,
   collection,
   onSnapshot,
   serverTimestamp
@@ -49,33 +48,23 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =====================================================
       FUNCIÓN PARA BLOQUEAR NÚMEROS YA VENDIDOS
   ===================================================== */
-  async function sincronizarNumerosOcupados() {
-    try {
-        const response = await fetch(URL_LECTURA_OCUPADOS);
-        const ocupados = await response.json(); 
+  onSnapshot(numerosRef, (snapshot) => {
+    const ocupados = snapshot.docs.map(d => d.id);
 
-        ocupados.forEach(num => {
-            const numeroFormateado = num.toString().padStart(3, "0");
-            const todosLosDivs = document.querySelectorAll(".numero");
-            
-            todosLosDivs.forEach(div => {
-                if (div.textContent === numeroFormateado) {
-                    div.classList.add("bloqueado");
-                    div.style.pointerEvents = "none"; 
-                    div.style.backgroundColor = "#d1d5db"; // Gris
-                    div.style.color = "#9ca3af";
-                }
-            });
-        });
-        
-        totalDisponibles = 400 - ocupados.length;
-        if (contadorDisponibles) contadorDisponibles.textContent = totalDisponibles;
-    } catch (error) {
-        console.error("Error al sincronizar:", error);
-    }
-  }
+    document.querySelectorAll(".numero").forEach(div => {
+      if (ocupados.includes(div.textContent)) {
+        div.classList.add("bloqueado");
+        div.style.pointerEvents = "none";
+        div.style.backgroundColor = "#d1d5db";
+        div.style.color = "#9ca3af";
+      }
+    });
 
-// Rifa 400 numeros 
+    totalDisponibles = 400 - ocupados.length;
+    if (contadorDisponibles) contadorDisponibles.textContent = totalDisponibles;
+  });
+
+  // Rifa de 400 números
   for (let i = 1; i <= 400; i++) {
     const btn = document.createElement("div");
     btn.className = "numero";
@@ -101,16 +90,18 @@ document.addEventListener("DOMContentLoaded", () => {
     grid.appendChild(btn);
   }
 
-// Formulario para guardar usuarios con numero 
-  formUsuario?.addEventListener("submit", async (e) => {
+  // Formulario de usuario
+  formUsuario?.addEventListener("submit", (e) => {
     e.preventDefault();
+
     const inputs = formUsuario.querySelectorAll("input");
     let todoOk = true;
+
     inputs.forEach(input => {
-        if (input.value.trim() === "") {
-            input.classList.add("input-error", "shake");
-            todoOk = false;
-        }
+      if (input.value.trim() === "") {
+        input.classList.add("input-error", "shake");
+        todoOk = false;
+      }
     });
 
     if (!todoOk) return;
@@ -122,53 +113,43 @@ document.addEventListener("DOMContentLoaded", () => {
     const premio = document.getElementById("preferencia-premio").value;
 
     datosUsuario = {
-        nombre: `${nombre} ${apellido}`,
-        contacto: contacto,
-        telefono: telefono,
-        premio: premio
+      nombre: `${nombre} ${apellido}`,
+      contacto,
+      telefono,
+      premio
     };
 
-    const formData = new FormData();
-    formData.append(FORM_FIELDS.nombre, datosUsuario.nombre);
-    formData.append(FORM_FIELDS.contacto, datosUsuario.contacto);
-    formData.append(FORM_FIELDS.telefono, datosUsuario.telefono); 
-    formData.append(FORM_FIELDS.premio, datosUsuario.premio);
-    formData.append(FORM_FIELDS.numeros, "REGISTRO_INICIAL"); 
+    formLlenado = true;
+    modalForm.style.display = "none";
+    document.body.style.overflow = "";
 
-    try {
-        await fetch(GOOGLE_FORM_URL, { method: "POST", mode: "no-cors", body: formData });
-        formLlenado = true;
-        modalForm.style.display = "none";
-        document.body.style.overflow = "";
-        alert("✅ ¡Datos registrados! Ahora selecciona tus números.");
-    } catch (error) {
-        alert("❌ Error de conexión.");
-    }
+    alert("✅ Datos listos. Ahora seleccioná tus números.");
   });
 
   closeForm?.addEventListener("click", () => {
     modalForm.style.display = "none";
     document.body.style.overflow = "";
-    formUsuario.reset(); 
+    formUsuario.reset();
   });
 
- // Bottón comprar numero 
+  // Botón números seleccionados
   btnGuardar.addEventListener("click", async () => {
     if (!datosUsuario || numerosSeleccionados.length === 0) {
       alert("⚠️ Selecciona al menos un número.");
       return;
     }
 
-    const formData = new FormData();
-    formData.append(FORM_FIELDS.nombre, datosUsuario.nombre);
-    formData.append(FORM_FIELDS.contacto, datosUsuario.contacto);
-    formData.append(FORM_FIELDS.telefono, datosUsuario.telefono); 
-    formData.append(FORM_FIELDS.premio, datosUsuario.premio);
-    formData.append(FORM_FIELDS.numeros, numerosSeleccionados.map(n => n.toString().padStart(3, "0")).join(", "));
-
     try {
-      await fetch(GOOGLE_FORM_URL, { method: "POST", mode: "no-cors", body: formData });
-      
+      for (const n of numerosSeleccionados) {
+        const id = n.toString().padStart(3, "0");
+
+        await setDoc(doc(db, "numeros", id), {
+          ...datosUsuario,
+          numero: id,
+          fecha: serverTimestamp()
+        });
+      }
+
       document.querySelectorAll(".numero.seleccionado").forEach(el => {
         el.classList.remove("seleccionado");
         el.classList.add("bloqueado");
@@ -176,19 +157,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
       totalDisponibles -= numerosSeleccionados.length;
       contadorDisponibles.textContent = totalDisponibles;
-      alert("🎉 ¡Reserva registrada!");
-      numerosSeleccionados = []; 
-    } catch (error) {
-      alert("❌ Error al guardar.");
+      numerosSeleccionados = [];
+
+      alert("🎉 ¡Número reservado correctamente!");
+    } catch (e) {
+      alert("❌ Ese número ya fue tomado");
     }
   });
 
-  // Modal de transferencia 
+  // Modal transferencia
   const toggleTransferencia = (e, show) => {
-    if(e) e.preventDefault();
+    if (e) e.preventDefault();
     modalTransferencia.style.display = show ? "flex" : "none";
     document.body.style.overflow = show ? "hidden" : "";
   };
+
   btnIconoTransferir?.addEventListener("click", (e) => toggleTransferencia(e, true));
   linkDatosPagoMenu?.addEventListener("click", (e) => toggleTransferencia(e, true));
   btnCerrarTransferencia?.addEventListener("click", () => toggleTransferencia(null, false));
@@ -197,6 +180,6 @@ document.addEventListener("DOMContentLoaded", () => {
     navigator.clipboard.writeText(info).then(() => alert("✅ Copiado."));
   });
 
-  sincronizarNumerosOcupados();
+
 
 });
