@@ -49,7 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
       FUNCIÓN PARA BLOQUEAR NÚMEROS YA VENDIDOS
   ===================================================== */
   onSnapshot(numerosRef, (snapshot) => {
-    const ocupados = snapshot.docs.map(d => d.id);
+    const ocupados = snapshot.docs
+      .filter(d => d.data().ocupado === true)
+      .map(d => d.id);
 
     document.querySelectorAll(".numero").forEach(div => {
       if (ocupados.includes(div.textContent)) {
@@ -146,6 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
         await setDoc(doc(db, "numeros", id), {
           ...datosUsuario,
           numero: id,
+          ocupado: true,
           fecha: serverTimestamp()
         });
       }
@@ -179,7 +182,5 @@ document.addEventListener("DOMContentLoaded", () => {
     const info = "Banco: Mercado Pago\nN° de Cuenta: 1019481756\nTitular: Vivian Roa Tapia";
     navigator.clipboard.writeText(info).then(() => alert("✅ Copiado."));
   });
-
-
 
 });
