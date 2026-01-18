@@ -1,20 +1,31 @@
+// Firebase SDK
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDocs,
+  collection,
+  onSnapshot,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBTIeTmg_Zj4mjJbsMh_FxNMWCzxQBpxH4",
+  authDomain: "rifa-rotura-lca.firebaseapp.com",
+  projectId: "rifa-rotura-lca",
+  storageBucket: "rifa-rotura-lca.firebasestorage.app",
+  messagingSenderId: "770429517367",
+  appId: "1:770429517367:web:6c8ce874cf4650638989b2"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const numerosRef = collection(db, "numeros");
+
+// URLs y campos del formulario de Google
 document.addEventListener("DOMContentLoaded", () => {
-
-  /* =====================================================
-      CONFIGURACIÓN
-  ===================================================== */
-  const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeP_d8KKfPPIhAlogHKH0K-Kcy2kxQPoUVphsMl8l_fUUQciA/formResponse";
-  
-  // URL DE TU APP SCRIPT (la que termina en /exec)
-  const URL_LECTURA_OCUPADOS = "https://script.google.com/macros/s/AKfycbx_xJm6tpp-_UsnFtGE7pObWhk6--Qw3ItCy41SwT7o73A1gRZNBsPb1C72L0iVhG479g/exec";
-
-  const FORM_FIELDS = {
-    nombre: "entry.1366760904",    
-    contacto: "entry.1280154487",  
-    numeros: "entry.484085276",    
-    telefono: "entry.371280629",   
-    premio: "entry.1983088014"     
-  };
 
   const grid = document.getElementById("grid-numeros");
   const btnGuardar = document.getElementById("guardarNumeros");
@@ -64,9 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  /* =====================================================
-      CREAR GRID DE 400 NÚMEROS
-  ===================================================== */
+// Rifa 400 numeros 
   for (let i = 1; i <= 400; i++) {
     const btn = document.createElement("div");
     btn.className = "numero";
@@ -92,9 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
     grid.appendChild(btn);
   }
 
-  /* =====================================================
-      FORMULARIO USUARIO
-  ===================================================== */
+// Formulario para guardar usuarios con numero 
   formUsuario?.addEventListener("submit", async (e) => {
     e.preventDefault();
     const inputs = formUsuario.querySelectorAll("input");
@@ -145,9 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
     formUsuario.reset(); 
   });
 
-  /* =====================================================
-      BOTÓN COMPRAR NÚMERO
-  ===================================================== */
+ // Bottón comprar numero 
   btnGuardar.addEventListener("click", async () => {
     if (!datosUsuario || numerosSeleccionados.length === 0) {
       alert("⚠️ Selecciona al menos un número.");
@@ -178,9 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* =====================================================
-      MODAL TRANSFERENCIA
-  ===================================================== */
+  // Modal de transferencia 
   const toggleTransferencia = (e, show) => {
     if(e) e.preventDefault();
     modalTransferencia.style.display = show ? "flex" : "none";
@@ -194,17 +197,6 @@ document.addEventListener("DOMContentLoaded", () => {
     navigator.clipboard.writeText(info).then(() => alert("✅ Copiado."));
   });
 
-  document.getElementById("btnAgendar")?.addEventListener("click", () => {
-    const titulo = encodeURIComponent("Sorteo Rifa Solidaria 🦵");
-    // Fecha: 2 de Marzo de 2026
-    const urlCalendar = `https://www.google.com/calendar/render?action=TEMPLATE&text=${titulo}&dates=20260302T210000Z/20260302T220000Z&details=¡Hoy+es+el+gran+sorteo!`;
-    window.open(urlCalendar, '_blank');
-  });
-
-  /* =====================================================
-      INICIO: LLAMAR A LA MEMORIA
-  ===================================================== */
   sincronizarNumerosOcupados();
-
 
 });
