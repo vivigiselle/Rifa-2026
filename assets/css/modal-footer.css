@@ -1,0 +1,72 @@
+/* MODAL LEGAL: Oculto por defecto */
+.legal-box-overlay {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* Fondo oscuro con transparencia */
+    z-index: 100000; /* Prioridad máxima sobre otros elementos */
+    backdrop-filter: blur(8px); /* Efecto de desenfoque moderno */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Se activa solo cuando el enlace es clickeado */
+.legal-box-overlay:target {
+    display: flex;
+}
+
+.legal-box-container {
+    background: #ffffff;
+    width: 85%;
+    max-width: 520px;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+    position: relative;
+    animation: legalFadeIn 0.3s ease-out;
+}
+
+@keyframes legalFadeIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.legal-box-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.legal-box-header h3 {
+    margin: 0;
+    color: #000;
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.legal-box-close {
+    text-decoration: none;
+    font-size: 2.5rem;
+    color: #ccc;
+    line-height: 0.6;
+    transition: color 0.2s;
+}
+
+.legal-box-close:hover {
+    color: #ff5a5f;
+}
+
+.legal-box-body {
+    color: #444;
+    line-height: 1.8;
+    font-size: 1rem;
+    max-height: 55vh;
+    overflow-y: auto;
+    text-align: left;
+}

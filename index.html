@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rifa Rotura LCA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/pay.css">
+    <link rel="stylesheet" href="assets/css/sticky.css">
+    <link rel="stylesheet" href="assets/css/modal.css">
+    <link rel="stylesheet" href="assets/css/form-datos.css">
+    <link rel="stylesheet" href="assets/css/modal-footer.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" type="image/png" href="assets/img/bota-de-futbol.png">
+
+
+</head>
+
+<body>
+    <header>
+        <!-- Introducción -->
+        <section class="et-hero-tabs">
+            <h1>RIFA A BENEFICIO</h1>
+            <h3>Bienvenidas/os a la Página Web para la rifa a beneficio de la operación de rodilla Rotura de LCA 🦵
+            </h3><br>
+            <p class="sub">Hace un par de meses tuve una lesión de rodilla jugando un campeonato de futbolito ⚽❤️
+                y
+                como quizás ya sabes, soy chica terry... "Yo juego a la pelota". Si bien podía no operarme, he decido
+                hacerlo porque me apasiona el fútbol y el deporte en general.
+                Con tu aporte, me ayudas con el tratamiento de la operación y el post operatorio kinesiologico. 😊
+            <p>
+                Aun tengo muchos partidos que jugar, corridas y maratones pendientes 🏃‍♂️, kms que recorrer en
+                bicicleta 🚴 y mucho peso que levantar 🏋️‍♀️.
+                Gracias por querer ayudarme con mi vida de deportista.</p><br>
+            <p>¡Mucha suerte a todas/os en la rifa! ⭐
+            </p>
+            <!--Algo extra-->
+            <div>
+                <section class="dots-container">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </section>
+
+            </div>
+            <div class="et-hero-tabs-container">
+                <a class="et-hero-tab" href="#premios">PREMIOS</a>
+                <a class="et-hero-tab" href="#numeros">NÚMEROS</a>
+                <a class="et-hero-tab" href="#" id="datosPago">DATOS DE PAGO</a>
+                <a class="et-hero-tab" href="#rr-ss">REDES SOCIALES</a>
+        </section>
+    </header>
+
+    <!-- Menú -->
+    <main class="et-main">
+        <!--Carusel de premios-->
+        <section class="et-slide" id="premios">
+            <h2> PREMIOS DE RIFA</h2>
+            <section class="carousel-section">
+                <div class="carousel-arrow left" id="carouselPrev">❮</div>
+                <div class="carousel-arrow right" id="carouselNext">❯</div>
+
+                <div id="carousel">
+                    <div class="hideLeft">
+                        <img src="./assets/img/juegos-toallas.webp" alt="Juego de Toallas">
+                        <p class="premio-nombre">Juego de Toallas</p>
+                    </div>
+                    <div class="prevLeftSecond">
+                        <img src="./assets/img/cartera-sei.webp" alt="Cartera Sei">
+                        <p class="premio-nombre">Cartera Sei</p>
+                    </div>
+                    <div class="prev">
+                        <img src="./assets/img/promo-vegana.png" alt="Promoción Vegana">
+                        <p class="premio-nombre">Promoción Vegana: Pan artesanal + Queso vegano</p>
+                    </div>
+                    <div class="selected">
+                        <img src="./assets/img/PARLANTE-JBLGO4REDAM.webp" alt="Parlante JBL Rojo">
+                        <p class="premio-nombre">Parlante JBL Rojo</p>
+                    </div>
+                    <div class="next">
+                        <img src="./assets/img/polera-team-chile.webp" alt="Polera Team Chile">
+                        <p class="premio-nombre">Polera oficial Team Chile</p>
+                    </div>
+                    <div class="nextRightSecond">
+                        <img src="./assets/img/giftcard-cencosud-30000.jpg" alt="Giftcard Cencosud">
+                        <p class="premio-nombre">Giftcard Cencosud $30.000</p>
+                    </div>
+                    <div class="hideRight">
+                        <img src="./assets/img/exprimidor-citricos-oster.webp" alt="Exprimidor Oster">
+                        <p class="premio-nombre">Exprimidor de cítricos Oster</p>
+                    </div>
+                    <div class="hideRight">
+                        <img src="./assets/img/chaqueta-mossimo-cuero.png" alt="Chaqueta Mossimo de cuero">
+                        <p class="premio-nombre">Chaqueta Mossimo de cuero</p>
+                    </div>
+                    <div class="hideRight">
+                        <img src="./assets/img/giftcard-tatuaje-50000.png" alt="Giftcard Tatuaje">
+                        <p class="premio-nombre">Giftcard Tatuaje $50.000</p>
+                    </div>
+                </div>
+            </section>
+
+        </section>
+        <!--Numeros disponibles-->
+        <section id="numeros" style="text-align: center;">
+            <div>
+                <h2>NUMEROS DISPONIBLES</h2>
+                <h4>APROVECHA DE COMPRAR 3 NUMEROS POR <strong>$5.000</strong></h4><br>
+                <p><strong>PASOS A SEGUIR:</strong></p>
+                <ul style="list-style-type: none; padding: 0;">
+                    <li><strong>1.- Escoge uno o más números de la rifa. Se solicitaran tus datos personales para
+                            continuar.</strong></li>
+                    <li><strong>2.- Luego presiona el botón "Comprar Número" para registrar tu compra.</strong></li>
+                    <li><strong>3.- Luego presiona el icono de tarjera "Transferir" de tu pantalla.</strong></li>
+                    <li><strong>4.- Finalmente copia los datos para efectuar la Transferencia. </strong>
+                    </li>
+                </ul>
+                <p><strong>¡Y LISTO! YA TIENES OPORTUNIDADES DE GANAR. 😊⭐</strong></p>
+
+                <p>Si gustas puedes guardar la fecha del sorteo en Google Calendar, presionando el botón
+                    <strong>"Agendar Sorteo"</strong> 🗓️
+                </p>
+                <p>⚠️No olvides transferir⚠️</p>
+            </div>
+            <div class="rifa-container" id="tab-react">
+                <!-- Columna izquierda: Transferencia -->
+                <div class="new" id="btnTransferir">
+                    <div class="container">
+                        <div class="left-side">
+                            <div class="card">
+                                <div class="card-line"></div>
+                                <div class="buttons"></div>
+                            </div>
+                            <div class="post">
+                                <div class="post-line"></div>
+                                <div class="screen">
+                                    <div class="dollar">$</div>
+                                </div>
+                                <div class="numbers"></div>
+                                <div class="numbers-line2"></div>
+                            </div>
+                        </div>
+                        <div class="right-side">
+                            <div>Transferir</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="custom-modal-overlay" id="modalTransferencia">
+                    <div class="custom-modal">
+                        <button class="close-custom-modal" id="closeModal">&times;</button>
+                        <h2>Datos de Transferencia</h2>
+                        <p><strong>Banco:</strong> Mercado Pago</p>
+                        <p><strong>N° de Cuenta:</strong> 1019481756</p>
+                        <p><strong>Tipo:</strong> Cuenta Vista</p>
+                        <p><strong>Email:</strong>vivigiselle.ro@gmail.com</p>
+                        <p><strong>Titular:</strong> Vivian Roa Tapia</p>
+                        <button class="btn-confirm" id="confirmModal">Copiar Datos</button>
+                    </div>
+                </div>
+
+
+
+                <!-- Columna centro: Grilla de números -->
+                <div class="numeros">
+                    <div class="grid-numeros" id="grid-numeros">
+                        <!-- Los números se generan aquí vía JS -->
+                    </div>
+                </div>
+
+                <!-- Columna derecha: Botones -->
+                <div class="acciones">
+                    <button class="button-calendario" id="btnAgendar" style="background-color: #5de2a3;">
+                        <i class="bi bi-envelope-fill"></i>
+                        <span class="lable"> Agendar Sorteo</span>
+                    </button>
+                    <button class="button-save" id="guardarNumeros">
+                        <i class="bi bi-bookmark-check"></i>
+                        <span class="lable">Comprar Número</span>
+                    </button>
+                </div>
+
+            </div>
+        </section>
+        <!-- Formualrio de usuario-->
+        <div class="custom-modal-overlay" id="modalFormUsuario">
+            <div class="custom-modal">
+                <button class="close-custom-modal" id="closeFormModal">&times;</button>
+                <form class="form">
+                    <p class="form-title">Antes de seleccionar. Ingresa tus datos personales</p>
+
+                    <div class="input-custom-container">
+                        <input type="text" placeholder="Ingrese su nombre" required>
+                    </div>
+                    <div class="input-custom-container">
+                        <input type="text" placeholder="Ingrese su apellido" required>
+                    </div>
+                    <div class="input-custom-container">
+                        <input type="text" placeholder="Ingrese su correo electrónico o Ig" required>
+                    </div>
+                    <div class="input-custom-container">
+                        <input type="tel" placeholder="Ingrese su número de teléfono" required
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                    </div>
+                    <button type="submit" class="submit">
+                        Guardar Datos
+                    </button>
+                </form>
+            </div>
+        </div>
+        <!-- Redes sociales Colaboradores. Con boostrap-->
+        <section class="redes-section" id="rr-ss" style="text-align: center;">
+            <h2>REDES SOCIALES</h2>
+            <h3>CONOCE QUIENES FUERON LOS COLABORADORES</h3>
+            <div class="redes-grid">
+                <div class="custom-card redes-card" style="width: 15rem;">
+                    <img src="assets/img/citrix-tattoo.png" class="card-img-top" alt="Logo Tatuaje">
+                    <div class="card-body">
+                        <h5 class="card-title">Citrix Tattoo</h5>
+                        <p class="card-text">Sigue a Giselle para más información sobre su increible
+                            trabajo como tatuadora.</p>
+                        <a href="https://www.instagram.com/citrixtattoo/?hl=es" class="btn btn-info text-light"
+                            target="_blank">Ir
+                            a
+                            Instagram</a>
+                    </div>
+                </div>
+                <div class="custom-card redes-card" style="width: 15rem;">
+                    <img src="assets/img/chesse-moon-vegan.png" class="card-img-top" alt="Logo Cheese Moon">
+                    <div class="card-body">
+                        <h5 class="card-title">Cheese Moon</h5>
+                        <p class="card-text">Experiencia de sabores con los quesos veganos a bases de
+                            frutos secos.
+                        </p>
+                        <a href="https://www.instagram.com/vegan_cheesemoon/" class="btn btn-info text-light"
+                            target="_blank">Ir a
+                            Instagram</a>
+                    </div>
+                </div>
+                <div class="custom-card redes-card" style="width: 15rem;">
+                    <img src="assets/img/pan-artesanal-vegano.jpeg" class="card-img-top" alt="Logo Pan Artesanal">
+                    <div class="card-body">
+                        <h5 class="card-title">Panadería Artesanal</h5>
+                        <p class="card-text">Haz tu pedido de deliciosos panes artesanales aptos para veganos.
+                        </p>
+                        <a href="https://www.instagram.com/belenberep/" class="btn btn-info text-light"
+                            target="_blank">Ir
+                            a
+                            Instagram</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Barra fija de Datitos Importantes-->
+        <section>
+            <div class="sticky-footer">
+                <div>
+                    <strong><span id="contadorDisponibles">400</span></strong><br>
+                    N° Disponibles
+                </div>
+                <div>
+                    <strong>02 de Marzo</strong><br>
+                    Sorteo
+                </div>
+                <div>
+                    <strong>$2.000</strong><br>
+                    Por número
+                </div>
+            </div>
+
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer>
+        <ul id="pie-de-pagina">
+            <p>© 2026 Rifa Solidaria - Todos los derechos reservados</p>
+            <li><a href="#open-legal-terminos">Términos y Condiciones</a></li>
+            <li><a href="#open-legal-privacidad">Politica de Privacidad</a></li>
+            <li><a href="https://www.instagram.com/vivilocatelii/">Instagram</a></li>
+            <li>
+                <p>👋</p>
+            </li>
+        </ul>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/carousel.js"></script>
+    <script src="assets/js/sticky.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script type="module" src="assets/js/script.js"></script>
+
+    <!--Modales del footer-->
+    <div id="open-legal-terminos" class="legal-box-overlay">
+        <div class="legal-box-container">
+            <div class="legal-box-header">
+                <h3>Términos y Condiciones de Uso</h3>
+                <a href="#!" class="legal-box-close">&times;</a>
+            </div>
+            <div class="legal-box-body">
+                <p><strong>1. ORGANIZACIÓN:</strong> Sorteo privado de recaudación de fondos. La presente rifa es
+                    organizada por Vivian Roa Tapia a beneficio de Operación por ritura de LCA.
+                    seleccionado.</p>
+                <p><strong>2. PARTICIAPACIÓN:</strong> La participación en la rifa es voluntaria y está sujeta a la
+                    aceptación de los presentes términos y condiciones. Podrán participar personas mayores de 18 años.
+                </p>
+                <p><strong>3. VALIDEZ:</strong> Los números disponibles se asignan de forma digital y en tiempo real.
+                    Cada número es único y, una vez reservado, no puede ser modificado ni reasignado. Solo participan
+                    números con comprobante de transferencia. Se procederá a revisar el comprobante de transferencia.
+                </p>
+                <p><strong>4. PREMIOS:</strong> Los premios de la rifa son fijos (se inluirán 2 premios más en febrero.
+                    No se encuentra el detalle de los premios en la página. No son transferibles ni canjeables por
+                    dinero</p>
+                <p><strong>5. PAGO:</strong> La participación queda confirmada una vez realizado y validado el pago
+                    mediante los medios informados. La reserva de un número no garantiza participación hasta completar
+                    dicho pago.</p>
+                <p><strong>6. SORTEO:</strong> Se realizará de forma transparente. El sorteo se realizará en la fecha y
+                    modalidad previamente informadas. El número ganador será anunciado públicamente.Se utlizará una
+                    pagina web de sorteos y se grabara el sorteo de los premios de la rifa.</p>
+                <p><strong>7. DATOS PERSONALES:</strong> Solo se solicitan nombre y datos de contacto con el único fin
+                    de
+                    identificar y comunicarse con los ganadores del sorteo.Los datos proporcionados no serán compartidos
+                    con terceros ni utilizados para publicidad masiva o fines ajenos a esta rifa.</p>
+                <p><strong>7. ALMACENAMIENTO DE DATOS:</strong> Los datos se almacenan de forma digital y segura
+                    únicamente durante la vigencia de la rifa y serán eliminados una vez finalizado el sorteo y
+                    entregados los premios.</p>
+            </div>
+        </div>
+    </div>
+    <div id="open-legal-privacidad" class="legal-box-overlay">
+        <div class="legal-box-container">
+            <h3>Política de Privacidad</h3>
+            <a href="#!" class="legal-box-close">&times;</a>
+        </div>
+        <div class="legal-box-body">
+            <h5>
+                Al participar en esta rifa, el usuario declara haber leído y aceptado la presente Política de
+                Privacidad:
+            </h5>
+            <p>
+                <strong>1. DATOS PERSONALES:</strong>
+                Solo solicitamos nombre y datos de contacto con el fin exclusivo de identificar y comunicarnos con los
+                participantes y ganadores de la rifa.
+            </p>
+            <p>
+                <strong>2. USO DE LA INFORMACIÓN:</strong>
+                La información proporcionada no será compartida con terceros ni utilizada para campañas publicitarias,
+                envíos masivos o fines ajenos a esta rifa.
+            </p>
+            <p>
+                <strong>3. COMPROBANTES DE PAGO:</strong>
+                Las imágenes o comprobantes de transferencias son utilizados únicamente para la validación del pago
+                correspondiente.
+            </p>
+            <p>
+                <strong>4. ALMACENAMIENTO:</strong>
+                Los datos se almacenan de forma digital y segura durante el tiempo necesario para la correcta
+                realización del sorteo.
+            </p>
+            <p>
+                <strong>5. ELIMINACIÓN DE DATOS:</strong>
+                Una vez finalizado el sorteo y entregados los premios, los datos personales y comprobantes de pago serán
+                eliminados y no conservados.
+            </p>
+        </div>
+
+    </div>
+    </div>
+</body>
+
+</html>
